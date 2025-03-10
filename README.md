@@ -1,0 +1,1 @@
+# latex_vscode_docker_template
