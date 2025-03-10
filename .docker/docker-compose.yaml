@@ -1,0 +1,19 @@
+version: '3'
+services:
+  latex:
+    user: "${UID:-1000}:${GID:-1000}"
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile.latex 
+    volumes:
+      - ../latex/src:/project/latex/src
+      - ../latex/output:/project/latex/output
+      - ../latex/figures:/project/latex/figures
+      - ../latex/include:/project/latex/include
+      - texmf-data:/usr/local/texlive
+    ports:
+      - "3000:3000"  # For LaTeX Workshop
+    working_dir: /project
+    command: tail -f /dev/null
+volumes:
+  texmf-data:
